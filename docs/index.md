@@ -630,7 +630,7 @@ team_stats_init.head(34)
 
 **Determining and Plotting Which Variables correlate to a team's score**
 
-After the data frame was cleaned, we then created a linear regression model to determine which 4 variables correlate to a team’s score. To do this, we leveraged sklearn statsmodels for every variable against the score for each entry in the dataframe. In this case, our null hypothesis would be that a given variable, for example, passing yards, does not impact a team’s score in a football game. We found that a team’s passing yards, rushing yards, allowed turnovers, and rushing yards allowed to the opposing team had the smallest p-values compared to the rest of the statistics, all having p-values under 1.0 E-6. This tells us that we must reject the null hypothesis that these 4 variables do not have an impact on a team’s score, meaning we can predict a team’s score based on those 4 variables/predictors.
+After the data frame was cleaned, we then created a linear regression model to determine which 4 variables correlate to a team’s score. To do this, we leveraged sklearn statsmodels for every variable against the score for each entry in the dataframe. In this case, our null hypothesis would be a given variable, for example, passing yards, does not impact a team’s score in a football game. We found that a team’s passing yards, rushing yards, allowed turnovers, and rushing yards allowed to the opposing team had the smallest p-values compared to the rest of the statistics, all having p-values under 1.0 E-6. This tells us that we must reject the null hypothesis that these 4 variables do not have an impact on a team’s score, meaning we can predict a team’s score based on those 4 variables/predictors.
 
 ```python
 for col in team_stats_init.iloc[:, 3:].columns:
@@ -870,7 +870,9 @@ for col in team_stats_init.iloc[:, 3:].columns:
     Notes:
     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
+**Plotting the Four Variables with best correlation to Scoring**
 
+After determining which 4 variables had the highest impact on score based on their respective p-values, we concluded that “PassY” (Passing Yards), “RushY” (Rushing Yards), “TurnoversAllowed”, and “RushingYardsAllowed” had the best correlation with a high score. We then utilized the seaborn library with the matlplotlib.pyplot library to plot each of these 4 variables versus points scored for each team. 
 
 
 ```python
@@ -1146,6 +1148,9 @@ for title, group in team_stats_init.groupby('Team Name'):
 
 ![svg](output_3_63.svg)
 
+**Plotting 4 graphs for each variable across all 32 teams in the NFL**
+
+To do this, we also combined the use of the seaborn and matplotlib.pyplot library to plot each of the four variables versus points scored for all 32 teams. Unlike the previous part that plotted each team individually, these four graphs were able to show us an overall trend across all NFL teams on how Passing Yards, Rushing Yards, Turnovers Allowed, and Rushing Yards Allowed impact the points scored by a team. For example, taking a closer look at the first plot which graphs Passing Yards versus Points Scored, the steep positive slope indicates that in general, when a NFL team throws for more yards, they will end up scoring more points. On the other hand, if you look at the third plot which graphs Turnovers Allowed versus Points Scored, the negative slope indicates that in general, when a NFL team allows more turnovers, they will end up scoring less points. 
 
 
 ```python
@@ -1200,6 +1205,11 @@ plt.title("Points Scored vs Rushing Yards Allowed Across All NFL Teams in the 20
 ![svg](output_4_4.svg)
 
 
+
+**Determining Predictors in a Given Week**
+
+Of course, when predicting a team’s score in a game, we will not know the pass yards, rush yards, turnovers, and rushing yards allowed until that game is already completed. This posed a challenge for us, as we cannot train a machine learning model without those 4 predictors given. To resolve this issue, we chose to use average passing yards, rushing yards, turnovers allowed, and rushing yards allowed up until that week. For example, if the Baltimore Ravens passed for 300 yards in the first week of the season and 100 yards in the second week, we would predict that the Ravens would pass for 200 yards in the third week of the season. Since we cannot use this method to expect predictors in the first week of the season, we chose to ignore predicting values in the first week of the season. Intuitively, we would expect that as the more games a team plays, the estimated predictors would become more accurate to the actual predictors.
+Using the averages of previous weeks to predict our variables, TODO
 
 ```python
 test_train_data = pd.DataFrame(columns=['Team Name', 'Scored Points', 'Expected Pass Yards'])

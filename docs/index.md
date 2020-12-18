@@ -1216,6 +1216,8 @@ Using the averages of previous weeks to predict our variables, TODO
 
 The above part conveyed how since we don’t know the values of the variables until a football game is over, we chose to calculate the averages of the previous weeks’ data to help predict our 4 variables: Passing Yards, Rushing Yards, Turnovers Allowed, and Rushing Yards. We then stored these averages under new column names in our new dataframe called “test_train_data”. These new column names were: “Expected Pass Yards”, “Expected Rushing Yards”, “Expected Turnovers Allowed”, and “Expected Rushing Yards Allowed”. From our original dataframe, we used the “Team Name” and “ScoredPoints” columns in our new dataframe as we still want to analyze how our calculated Expected values correlate to the points scored by a team. 
 
+**Constructing "Expected Pass Yards" Column in new DataFrame**
+
 ```python
 test_train_data = pd.DataFrame(columns=['Team Name', 'Scored Points', 'Expected Pass Yards'])
 for title, group in team_stats_init.groupby('Team Name'):
@@ -1248,7 +1250,7 @@ for title, group in team_stats_init.groupby('Team Name'):
 
 
 ```
-
+**Constructing "Expected Rushing Yards" Column in new DataFrame**
 
 ```python
 rushing_column = pd.DataFrame(columns= ["Expected Rushing Yards"])
@@ -1282,6 +1284,7 @@ test_train_data["Expected Rushing Yards"] = rushing_column['Expected Rushing Yar
 
 ```
 
+**Constructing "Expected Turnovers Allowed" Column in new DataFrame**
 
 ```python
 rushing_column = pd.DataFrame(columns= ["Expected Turnovers Allowed"])
@@ -1312,7 +1315,7 @@ for title, group in team_stats_init.groupby('Team Name'):
 
 test_train_data["Expected Turnovers Allowed"] = rushing_column['Expected Turnovers Allowed'].values
 ```
-
+**Constructing "Expected Rushing Yards Allowed" Column in new DataFrame**
 
 ```python
 rushing_column = pd.DataFrame(columns= ["Expected Rushing Yards Allowed"])
@@ -1534,6 +1537,9 @@ test_train_data.head(17)
 </div>
 
 
+**Training a Random Forest Regression using the 4 Expected Variables and the Actual Scored Points**
+
+To predict the accuracy of our four expected variables we calculated using the averages from previous weeks, we chose to train a Random Forest Regression on this data. 
 
 
 ```python
@@ -1555,7 +1561,9 @@ print(score_train)
 
     89.50317158558929
 
+**Plotting Expected Values versus Predicted Values**
 
+To plot this, we used matplotlib.pyplot and seaborn to plot 
 
 ```python
 p1 = sns.regplot(x = y_test, y= clf.predict(X_test))

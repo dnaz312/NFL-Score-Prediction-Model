@@ -2357,7 +2357,9 @@ print(num_rows/ len(final_df))
 
     0.5220588235294118
 
+**Insight**
 
+Overall, we can conclude that our model to predict an NFL team’s score in a given week was somewhat accurate. What we can also assess is that a team’s pass yards, rushing yards, turnovers allowed, and rushing yards allowed is strongly correlated with a team’s score in a given week. In the future, to improve the accuracy of the model, we should work on developing a better method of predicting the predictors in a given week, by possibly looking at variables that influence those predictors. For example, passing yards in a week could be influenced by injuries to key players on a team such as the quarterback and weather conditions in that particular week. Running other models to predict the predictors would help improve the accuracy of this model. To learn more about machine learning visit https://medium.com/machine-learning-for-humans/why-machine-learning-matters-6164faf1df12.
 
 ```python
 

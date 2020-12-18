@@ -1,5 +1,7 @@
 **Analyzing the 2019 NFL Season**
 
+Daniel Zafman and Dennis Nazarov
+
 **Introduction**
 
 One of the most popular sports in the United States of America is football, commonly referred to as the National Football League (NFL). Millions of fans tune in every Sunday to watch their favorite sport, favorite team, and favorite players. Throughout the NFL, there are many statistics that help coaches, scouts, and fans analyze how well their respective teams are doing, such as the average amount of points scored, how many rushing yards a team allows, or how many passing yards a team has per game. This tutorial will explore the statistics and data of each team during the 2019 NFL season to help make conclusions on how different variables, such as passing yards, can impact each team differently. The data from the 2019 season will come from the “ProFootballReference” website, specifically: https://www.pro-football-reference.com/years/2019/index.htm

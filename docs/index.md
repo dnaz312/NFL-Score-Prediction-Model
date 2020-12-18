@@ -628,7 +628,9 @@ team_stats_init.head(34)
 </div>
 
 
+**Determining and Plotting Which Variables correlate to a team's score**
 
+After the data frame was cleaned, we then created a linear regression model to determine which 4 variables correlate to a team’s score. To do this, we leveraged sklearn statsmodels for every variable against the score for each entry in the dataframe. In this case, our null hypothesis would be that a given variable, for example, passing yards, does not impact a team’s score in a football game. We found that a team’s passing yards, rushing yards, allowed turnovers, and rushing yards allowed to the opposing team had the smallest p-values compared to the rest of the statistics, all having p-values under 1.0 E-6. This tells us that we must reject the null hypothesis that these 4 variables do not have an impact on a team’s score, meaning we can predict a team’s score based on those 4 variables/predictors.
 
 ```python
 for col in team_stats_init.iloc[:, 3:].columns:
@@ -867,6 +869,7 @@ for col in team_stats_init.iloc[:, 3:].columns:
     
     Notes:
     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+
 
 
 

@@ -1,4 +1,4 @@
-**Analyzing the 2019 National Football League (NFL) Season: **
+**Analyzing the 2019 National Football League (NFL) Season:**
 
 Daniel Zafman and Dennis Nazarov
 
@@ -37,6 +37,10 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
 
 ```
+
+**Retrieving the Data, Transforming it into a DataFrame, and Processing the Data**
+
+The first step of the process was to go to the 2019 NFL season data on https://www.pro-football-reference.com/years/2019/index.htm and press on each team. When pressing on each team, we saved each team’s statistics from all 16 games in a “csv” file. To read in each csv file and convert it into a pandas dataframe, we applied the function “read_csv”. We then applied a series of column name changes and drops to keep the data frame neater  as well as keep only the variables we care about. We first replaced the “Day” column from the original csv file to “Team Name” so viewers can easily see the relationship between each team and their data. Since we only care about certain variables, we dropped some variables, like “Date”, “Rec”, and “OT” using the pandas “drop” function. We then kept the variables we want to further analyze - (“ScoredPoints”, “FirstDowns”, “PassY”, “RushY, “TurnoversAllowed”, “FirstAllowed”, “YardsAllowed”, “PassYardsAllowed”, “RushingYardsAllowed”, and “Turnovers”).
 
 
 ```python

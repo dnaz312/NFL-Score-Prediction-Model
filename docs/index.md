@@ -2340,7 +2340,9 @@ final_df.head(20)
 </div>
 
 
+**Assessing the Accuracy of the Random Forest Regression**
 
+We cannot use classification score methods to assess the accuracy of our model because we have to compare continuous variables. As a result, we first created a new column in our dataframe of the absolute difference between the expected and predicted scores. We then created a function that outputted a dataframe of all of the scores that were within a set tolerance, for example, of all of the test data, how many score predictions were within 1 point. We divided the length of this dataframe by the total number of score predictions to give us an accuracy score. Within 1 point, our model predicted with 9 percent accuracy, however, by setting a tolerance of 1 touchdown (7 points), we were able to predict a score with about 52 percent accuracy. 
 
 ```python
 final_df['Differences'] = abs(final_df['ActualPointsScored']- final_df['ExpectedPointsScored'])

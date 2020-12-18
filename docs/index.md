@@ -1,3 +1,8 @@
+One of the most popular sports in the United States of America is football, commonly referred to as the National Football League (NFL). Millions of fans tune in every Sunday to watch their favorite sport, favorite team, and favorite players. Throughout the NFL, there are many statistics that help coaches, scouts, and fans analyze how well their respective teams are doing, such as the average amount of points scored, how many rushing yards a team allows, or how many passing yards a team has per game. This tutorial will explore the statistics and data of each team during the 2019 NFL season to help make conclusions on how different variables, such as passing yards, can impact each team differently. The data from the 2019 season will come from the “ProFootballReference” website, specifically: https://www.pro-football-reference.com/years/2019/index.htm
+
+This tutorial will dive into how we utilized pandas to construct a refined table of each team’s statistics per game (16 games per team), such as by changing column names to develop a more representative data frame of what we are trying to analyze. It will also display how we used a combination of seaborn and matplotlib.pyplot to plot specific variables for each team, such as Passing Yards, Rushing Yards, Turnovers Allowed, and Rushing Yards Allowed, versus the points scored for that team. The tutorial will then analyze the results of these plots to conclude which variable has the highest impact against points scored, and how that impact varies across teams in the NFL.
+
+
 ```python
 !conda install -y pandas
 !conda install -y seaborn
@@ -91,6 +96,10 @@ from sklearn.metrics import accuracy_score
     Collecting package metadata (current_repodata.json): done
     Solving environment: | 
 
+
+**Getting the Data, Transforming it into a Dataframe, and Processing Data**
+
+The first step of the process was to go to the 2019 NFL season data on https://www.pro-football-reference.com/years/2019/index.htm and press on each team. When pressing on each team, we saved each team’s statistics from all 16 games in a “csv” file. To read in each csv file and convert it into a pandas dataframe, we applied the function “read_csv”. We then applied a series of column name changes and drops to keep the data frame neater  as well as keep only the variables we care about. We first replaced the “Day” column from the original csv file to “Team Name” so viewers can easily see the relationship between each team and their data. Since we only care about certain variables, we dropped some variables, like “Date”, “Rec”, and “OT” using the pandas “drop” function. We then kept the variables we want to further analyze - (“ScoredPoints”, “FirstDowns”, “PassY”, “RushY, “TurnoversAllowed”, “FirstAllowed”, “YardsAllowed”, “PassYardsAllowed”, “RushingYardsAllowed”, and “Turnovers”).
 
 ```python
 
@@ -711,6 +720,9 @@ team_stats_init.head(34)
 </div>
 
 
+**Determining/Plotting which variables correlate to a team's score
+
+After the data frame was cleaned, we then created a linear regression model to determine which 4 variables correlate to a team’s score. To do this, we leveraged sklearn statsmodels for every variable against the score for each entry in the dataframe. In this case, our null hypothesis would be that a given variable, for example, passing yards, does not impact a team’s score in a football game. We found that a team’s passing yards, rushing yards, allowed turnovers, and rushing yards allowed to the opposing team had the smallest p-values compared to the rest of the statistics, all having p-values under 1.0 E-6. This tells us that we must reject the null hypothesis that these 4 variables do not have an impact on a team’s score, meaning we can predict a team’s score based on those 4 variables/predictors. 
 
 
 ```python

@@ -1563,7 +1563,7 @@ print(score_train)
 
 **Plotting Expected Values versus Predicted Values**
 
-To plot this, we used matplotlib.pyplot and seaborn to plot 
+To plot this, we used matplotlib.pyplot and seaborn to plot the expected values we discovered versus the predicted values. If our model produced 100% accuracy, meaning the expected values identically matched the predicted values, the slope would have been 1 in the plot. If you take a closer look at the plot, the slight, positive slope indicates that although our expected values didn’t exactly match our predicted values, the Random Forest Regression was a great model for our dataset, producing an accuracy of 89.50317158558929 (also stated above).
 
 ```python
 p1 = sns.regplot(x = y_test, y= clf.predict(X_test))

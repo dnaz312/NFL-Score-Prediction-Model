@@ -1539,7 +1539,7 @@ test_train_data.head(17)
 
 **Training a Random Forest Regression using the 4 Expected Variables and the Actual Scored Points**
 
-To predict the accuracy of our four expected variables we calculated using the averages from previous weeks, we chose to train a Random Forest Regression on this data. 
+To predict the accuracy of our four expected variables that we calculated using the averages from previous weeks in the NFL season versus the amount of points scored, we chose to train a Random Forest Regression on this data. We utilized the “RandomForestRegression” class within the sklearn.ensemble library to perform a Random Forest Regression on our training data. After training the Random Forest Regression model with this data, the “fit” function as well as the “mean_squared_error” function delivers a percentage indicating how accurate our expected variable calculations were. Since the “mean_squared_error” gave us an accuracy of 89.50317158558929%, this means that the values of our expected variables were pretty accurate when compared to the predicted values.
 
 
 ```python

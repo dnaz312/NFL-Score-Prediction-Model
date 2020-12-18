@@ -870,6 +870,7 @@ for col in team_stats_init.iloc[:, 3:].columns:
     Notes:
     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
+
 **Plotting the Four Variables with best correlation to Scoring**
 
 After determining which 4 variables had the highest impact on score based on their respective p-values, we concluded that “PassY” (Passing Yards), “RushY” (Rushing Yards), “TurnoversAllowed”, and “RushingYardsAllowed” had the best correlation with a high score. We then utilized the seaborn library with the matlplotlib.pyplot library to plot each of these 4 variables versus points scored for each team. 
@@ -1210,6 +1211,10 @@ plt.title("Points Scored vs Rushing Yards Allowed Across All NFL Teams in the 20
 
 Of course, when predicting a team’s score in a game, we will not know the pass yards, rush yards, turnovers, and rushing yards allowed until that game is already completed. This posed a challenge for us, as we cannot train a machine learning model without those 4 predictors given. To resolve this issue, we chose to use average passing yards, rushing yards, turnovers allowed, and rushing yards allowed up until that week. For example, if the Baltimore Ravens passed for 300 yards in the first week of the season and 100 yards in the second week, we would predict that the Ravens would pass for 200 yards in the third week of the season. Since we cannot use this method to expect predictors in the first week of the season, we chose to ignore predicting values in the first week of the season. Intuitively, we would expect that as the more games a team plays, the estimated predictors would become more accurate to the actual predictors.
 Using the averages of previous weeks to predict our variables, TODO
+
+**Our Implementation of a New DataFrame of Expected Variables**
+
+The above part conveyed how since we don’t know the values of the variables until a football game is over, we chose to calculate the averages of the previous weeks’ data to help predict our 4 variables: Passing Yards, Rushing Yards, Turnovers Allowed, and Rushing Yards. We then stored these averages under new column names in our new dataframe called “test_train_data”. These new column names were: “Expected Pass Yards”, “Expected Rushing Yards”, “Expected Turnovers Allowed”, and “Expected Rushing Yards Allowed”. From our original dataframe, we used the “Team Name” and “ScoredPoints” columns in our new dataframe as we still want to analyze how our calculated Expected values correlate to the points scored by a team. 
 
 ```python
 test_train_data = pd.DataFrame(columns=['Team Name', 'Scored Points', 'Expected Pass Yards'])
